@@ -18,21 +18,44 @@ class ViewController: UIViewController {
         [0,0,0],
     ]
     
- 
+    var playerID: Int = 0
+    
     @IBAction func ticTacAction(sender: UIButton) {
-        numberOfMovesPlayed += 1
-        if numberOfMovesPlayed % 2 != 0 {
-//          first player == red
-            let playerColor = "red"
-            sender.backgroundColor = UIColor.redColor()
+        self.numberOfMovesPlayed += 1
+        var validMove = false
+        
+        if sender.tag < 4 && (gameBoard[0][sender.tag - 1] == 0) {
+            gameBoard[0][sender.tag - 1] = playerID
+            validMove = true
+            print(gameBoard)
         }
-        else {
-//          second player == blue
-            let playerColor = "blue"
-            sender.backgroundColor = UIColor.blueColor()
+        else if sender.tag < 7 && (gameBoard[0][sender.tag - 1] == 0) {
+            gameBoard[1][sender.tag - 4] = playerID
+            validMove = true
+            print(gameBoard)
+        }
+        else if (gameBoard[0][sender.tag - 1] == 0) {
+            gameBoard[2][sender.tag - 7] = playerID
+            validMove = true
+            print(gameBoard)
+        }
+        
+        if validMove == true {
+            if numberOfMovesPlayed % 2 != 0 {
+                //          first player == red
+                playerID = 1
+                sender.backgroundColor = UIColor.redColor()
+                validMove = false
+            }
+            else {
+                //          second player == blue
+                playerID = 2
+                sender.backgroundColor = UIColor.blueColor()
+                validMove = false
+            }
         }
     }
-        
+    
         
 
 
