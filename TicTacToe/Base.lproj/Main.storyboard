@@ -127,12 +127,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="TaX-uG-gbf">
                                 <rect key="frame" x="20" y="554" width="560" height="26"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SR5-WJ-Svu">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSA-TR-TCu">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y2l-cu-Xws"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="dan-Wq-cgS"/>
@@ -170,6 +171,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="dBt-Dr-CNu" secondAttribute="leading" id="fXG-wA-KNs"/>
                             <constraint firstItem="LXV-qT-xw5" firstAttribute="top" secondItem="96h-Un-Ria" secondAttribute="bottom" constant="8" id="hSU-ii-PsI"/>
                             <constraint firstItem="dBt-Dr-CNu" firstAttribute="top" secondItem="LXV-qT-xw5" secondAttribute="bottom" constant="8" id="jLu-3W-ppC"/>
+                            <constraint firstItem="wSA-TR-TCu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l31-5K-Qu5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TaX-uG-gbf" secondAttribute="bottom" constant="20" id="mTb-j4-aGk"/>
                             <constraint firstAttribute="leadingMargin" secondItem="96h-Un-Ria" secondAttribute="leading" id="pt9-FX-Vga"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LXV-qT-xw5" secondAttribute="trailing" id="qKf-7V-7Ug"/>
@@ -177,6 +179,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="victoryLabel" destination="HeY-zT-IbZ" id="Ka6-7E-4dc"/>
                         <outletCollection property="ticTacButton" destination="upe-tl-0RF" collectionClass="NSMutableArray" id="2AX-yt-g4U"/>
                         <outletCollection property="ticTacButton" destination="z7b-do-l95" collectionClass="NSMutableArray" id="I9H-a8-uHL"/>
                         <outletCollection property="ticTacButton" destination="RAo-yW-cMA" collectionClass="NSMutableArray" id="1D3-of-yVf"/>
