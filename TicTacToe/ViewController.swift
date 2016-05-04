@@ -9,10 +9,39 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var ticTacButton: [UIButton]!
+    
+    var numberOfMovesPlayed = 0
+    var gameBoard = [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+    ]
+    
+ 
+    @IBAction func ticTacAction(sender: UIButton) {
+        numberOfMovesPlayed += 1
+        if numberOfMovesPlayed % 2 != 0 {
+//          first player == red
+            let playerColor = "red"
+            sender.backgroundColor = UIColor.redColor()
+        }
+        else {
+//          second player == blue
+            let playerColor = "blue"
+            sender.backgroundColor = UIColor.blueColor()
+        }
+    }
+        
+        
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        for button in ticTacButton  {
+            button.backgroundColor = UIColor.lightGrayColor()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
