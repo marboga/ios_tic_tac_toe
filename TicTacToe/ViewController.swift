@@ -25,44 +25,50 @@ class ViewController: UIViewController {
 //    var sum = 0
     
     @IBAction func ticTacAction(sender: UIButton) {
-        if sender.tag < 4 && (gameBoard[0][sender.tag - 1] == 0) {
-            gameBoard[0][sender.tag - 1] = playerID
-            self.validMove = true
-            print(sender.tag)
-        }
-        else if sender.tag > 3 && sender.tag < 7 && (gameBoard[1][sender.tag - 4] == 0) {
-            gameBoard[1][sender.tag - 4] = playerID
-            self.validMove = true
-            print(sender.tag)
-        }
-        else if sender.tag > 6 && (gameBoard[2][sender.tag - 7] == 0) {
-            gameBoard[2][sender.tag - 7] = playerID
-            validMove = true
-            print(sender.tag)
-        }
-        else {
-            validMove = false
-            print("invalid move attempted at button \(sender.tag)")
-        }
-        
-        if validMove == true {
-            if numberOfMovesPlayed % 2 != 0 {
-//              first player == red
-                playerID = 1
-                sender.backgroundColor = UIColor.redColor()
-                self.validMove = false
-                print(gameBoard, numberOfMovesPlayed)
+        //checks to see if game is already over
+        if victoryLabel.hidden == true {
+            // if button clicked is in top row (and button is unclicked)
+            if sender.tag < 4 && (gameBoard[0][sender.tag - 1] == 0) {
+                gameBoard[0][sender.tag - 1] = playerID
+                self.validMove = true
+                print(sender.tag)
+            }
+            // if button is in middle row
+            else if sender.tag > 3 && sender.tag < 7 && (gameBoard[1][sender.tag - 4] == 0) {
+                gameBoard[1][sender.tag - 4] = playerID
+                self.validMove = true
+                print(sender.tag)
+            }
+            // if button is in bottom row
+            else if sender.tag > 6 && (gameBoard[2][sender.tag - 7] == 0) {
+                gameBoard[2][sender.tag - 7] = playerID
+                validMove = true
+                print(sender.tag)
             }
             else {
-//              second player == blue
-                playerID = 2
-                sender.backgroundColor = UIColor.blueColor()
-                self.validMove = false
-                print(gameBoard, numberOfMovesPlayed)
+                validMove = false
+                print("invalid move attempted at button \(sender.tag)")
             }
-            self.numberOfMovesPlayed += 1
+            
+            if validMove == true {
+                if numberOfMovesPlayed % 2 != 0 {
+    //              first player == red
+                    playerID = 1
+                    sender.backgroundColor = UIColor.redColor()
+                    self.validMove = false
+                    print(gameBoard, numberOfMovesPlayed)
+                }
+                else {
+    //              second player == blue
+                    playerID = 2
+                    sender.backgroundColor = UIColor.blueColor()
+                    self.validMove = false
+                    print(gameBoard, numberOfMovesPlayed)
+                }
+                self.numberOfMovesPlayed += 1
+            }
+            checkForVictor()
         }
-        checkForVictor()
     }
     
     func checkForVictor() {
