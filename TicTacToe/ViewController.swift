@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var ticTacButton: [UIButton]!
     @IBOutlet weak var victoryLabel: UILabel!
     
-    var numberOfMovesPlayed = 0
+    var numberOfMovesPlayed = 1
     var gameBoard = [
         [0,0,0],
         [0,0,0],
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     var playerID: Int = 1
     var validMove = true
     
-    var sum = 0
+//    var sum = 0
     
     @IBAction func ticTacAction(sender: UIButton) {
         if sender.tag < 4 && (gameBoard[0][sender.tag - 1] == 0) {
@@ -46,7 +46,6 @@ class ViewController: UIViewController {
         }
         
         if validMove == true {
-            self.numberOfMovesPlayed += 1
             if numberOfMovesPlayed % 2 != 0 {
 //              first player == red
                 playerID = 1
@@ -61,23 +60,74 @@ class ViewController: UIViewController {
                 self.validMove = false
                 print(gameBoard, numberOfMovesPlayed)
             }
+            self.numberOfMovesPlayed += 1
         }
         checkForVictor()
     }
     
     func checkForVictor() {
-        //check across
-        for row in 0..<gameBoard.count {
-            var rowSum = []
-            print(row, "ROW")
-            for value in gameBoard[row] {
-                rowSum.append(value)
+        //there can be no winner until one player has gone 3 times
+        if numberOfMovesPlayed > 4 {
+            //check across rows
+            for row in 0..<gameBoard.count {
+                var rowSum: [Int] = []
+                for value in gameBoard[row] {
+                    rowSum.append(value)
+                    print(gameBoard, "numOfPlays=", numberOfMovesPlayed)
+                }
+                //if blue has 3 in one row
+                if rowSum == [1,1,1] {
+                    victoryLabel.text = "Blue is the winner!"
+                    victoryLabel.hidden = false
+                }
+                //if red has 3 in one row
+                else if rowSum == [2,2,2] {
+                    //inform the user
+                    victoryLabel.text = "Red is the winner!"
+                    victoryLabel.hidden = false
+                    for _ in [ticTacButton] {
+                        //disable all buttons
+                        print("i don't want button")
+                    }
+                }
             }
-            if rowSum == [1,1,1] {
+            if gameBoard[0][0] == 1 && gameBoard[1][0] == 1 && gameBoard[2][0] == 1 {
                 victoryLabel.text = "Blue is the winner!"
                 victoryLabel.hidden = false
             }
-            else if rowSum == [2,2,2] {
+            else if gameBoard[0][0] == 2 && gameBoard[1][0] == 2 && gameBoard[2][0] == 2 {
+                victoryLabel.text = "Red is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][1] == 1 && gameBoard[1][1] == 1 && gameBoard[2][1] == 1 {
+                victoryLabel.text = "Blue is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][1] == 2 && gameBoard[1][1] == 2 && gameBoard[2][1] == 2 {
+                victoryLabel.text = "Red is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][2] == 1 && gameBoard[1][2] == 1 && gameBoard[2][2] == 1 {
+                victoryLabel.text = "Blue is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][2] == 2 && gameBoard[1][2] == 2 && gameBoard[2][2] == 2 {
+                victoryLabel.text = "Red is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][0] == 1 && gameBoard[1][1] == 1 && gameBoard[2][2] == 1 {
+                victoryLabel.text = "Blue is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][0] == 2 && gameBoard[1][1] == 2 && gameBoard[2][2] == 2 {
+                victoryLabel.text = "Red is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][2] == 1 && gameBoard[1][1] == 1 && gameBoard[2][0] == 1 {
+                victoryLabel.text = "Blue is the winner!"
+                victoryLabel.hidden = false
+            }
+            else if gameBoard[0][2] == 2 && gameBoard[1][1] == 2 && gameBoard[2][0] == 2 {
                 victoryLabel.text = "Red is the winner!"
                 victoryLabel.hidden = false
             }
@@ -98,13 +148,13 @@ class ViewController: UIViewController {
         playerID = 1
         validMove = true
         victoryLabel.hidden = true
+        for button in ticTacButton  {
+            button.backgroundColor = UIColor.lightGrayColor()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for button in ticTacButton  {
-            button.backgroundColor = UIColor.lightGrayColor()
-        }
         reset()
         
     }

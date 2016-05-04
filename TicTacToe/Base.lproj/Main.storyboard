@@ -84,7 +84,7 @@
                                                     <action selector="ticTacAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rN0-77-2Xy"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVE-5R-VWp">
+                                            <button opaque="NO" tag="6" contentMode="scaleAspectFill" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVE-5R-VWp">
                                                 <rect key="frame" x="375" y="0.0" width="185" height="139"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
